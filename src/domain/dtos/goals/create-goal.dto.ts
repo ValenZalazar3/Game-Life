@@ -2,16 +2,19 @@
 
 export class CreateGoalDto {
     constructor(
-        public readonly text: string
+        public readonly title: string,
+        public readonly description: string,
+
     ) { }
 
     static create(props: { [key: string]: any }): [string?, CreateGoalDto?] {
 
-        const { text } = props
+        const { title, description } = props
 
-        if (!text) return ['Text property is required', undefined]
+        if (!title) return ['Title property is required', undefined]
+        if (!description) return ['Description property is required', undefined]
 
-        return [undefined, new CreateGoalDto(text)]
+        return [undefined, new CreateGoalDto(title, description)]
 
     }
 }
