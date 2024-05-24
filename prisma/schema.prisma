@@ -13,9 +13,20 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
+model Goal {
+  id          String    @id @default(uuid())
+  title       String
+  description String    @db.VarChar
+  createdAt   DateTime? @db.Timestamp()
+  User        User[]
+}
 
-model goal {
-  id Int @id @default(autoincrement())
-  text String @db.VarChar
-  completedAt DateTime? @db.Timestamp() 
+model User {
+  id      String @id @default(uuid())
+  name    String
+  surname String
+  email   String @unique
+
+  goal   Goal   @relation(fields: [goalId], references: [id])
+  goalId String
 }

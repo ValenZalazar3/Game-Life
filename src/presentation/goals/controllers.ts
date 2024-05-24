@@ -26,4 +26,11 @@ export class GoalsControllers {
             .then(todo => res.json(todo))
             .catch(error => res.status(400).json({ error }))
     }
+
+    public updateGoal = () => {
+        
+    }
+
+
+
 }
