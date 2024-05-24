@@ -3,29 +3,31 @@
 
 export class GoalEntity {
     constructor(
-        public id: number,
-        public text: string,
-        public completedAt?: Date | null
+        public id: string,
+        public title: string,
+        public description: string,
+        public createdAt?: Date | null
     ) { }
 
-    get isCompletedAt() {
-        return !!this.completedAt
+    get isCreatedAt() {
+        return !!this.createdAt
     }
 
     public static fromObject(object: { [key: string]: any }) {
-        const { id, text, completedAt } = object;
+        const { id, title, description, createdAt } = object;
 
         if (!id) throw 'Id is required';
-        if (!text) throw 'Text is required';
+        if (!title) throw 'Title is required';
+        if (!description) throw 'description is required';
 
-        let newCompletedAt;
-        if (completedAt) {
-            newCompletedAt = new Date(completedAt);
-            if (isNaN(newCompletedAt.getTime())) {
-                throw 'CompletedAt is not a valid date'
+        let newCreatedAt;
+        if (createdAt) {
+            newCreatedAt = new Date(createdAt);
+            if (isNaN(newCreatedAt.getTime())) {
+                throw 'createdAt is not a valid date'
             }
-        } // Forma de validar si es una fecha o no, sin tener que usar paquetes de terceros
-        return new GoalEntity(id, text, completedAt)
+        }
+        return new GoalEntity(id, title, description, createdAt)
     }
 }
 
