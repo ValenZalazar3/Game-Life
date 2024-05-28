@@ -17,7 +17,10 @@ export class GoalRouter {
         const goalController = new GoalsControllers(goalRepository)
 
         router.get('/', goalController.getGoals)
+        router.get('/:id', goalController.getGoalById)
+        router.put('/:id', goalController.updateGoal)
         router.post('/', goalController.createGoal)
+        router.delete('/:id', goalController.createGoal)
 
 
         return router
