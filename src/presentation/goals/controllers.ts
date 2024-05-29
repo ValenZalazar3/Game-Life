@@ -13,7 +13,7 @@ export class GoalsControllers {
     public getGoals = (req: Request, res: Response) => {
         new GetGoals(this.goalRepository)
             .execute()
-            .then(todos => res.json(todos))
+            .then(goal => res.json(goal))
             .catch(error => res.status(400).json({ error }))
     }
 
@@ -23,7 +23,7 @@ export class GoalsControllers {
 
         new CreateGoal(this.goalRepository)
             .execute(createGoalDto!)
-            .then(todo => res.json(todo))
+            .then(goal => res.json(goal))
             .catch(error => res.status(400).json({ error }))
     }
 
@@ -37,7 +37,7 @@ export class GoalsControllers {
     }
     public updateGoal = (req: Request, res: Response) => {
         const id = req.params.id
-        const [error, updateGoalDto] = UpdateGoalDto.create({ ...req.body, id })
+        const [error, updateGoalDto] = UpdateGoalDto.update({ ...req.body, id })
         if (error) return res.status(400).json({ error });
         new UpdateGoal(this.goalRepository)
             .execute(id, updateGoalDto!)
