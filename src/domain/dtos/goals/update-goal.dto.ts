@@ -20,7 +20,7 @@ export class UpdateGoalDto {
 
 
 
-    static create(props: { [key: string]: any }): [string?, UpdateGoalDto?] {
+    static update(props: { [key: string]: any }): [string?, UpdateGoalDto?] {
 
         const { id, title, description, createdAt } = props
         let newCreatedAt = createdAt;
